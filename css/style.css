@@ -19,6 +19,9 @@ body {
     color: var(--text-color-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -104,13 +107,14 @@ h2, h3 {
 }
 
 footer {
-    background-color: var(--text-color-primary);
-    color: var(--text-color-secondary);
+    background-color: #f2f2f2;
+    color: #333;
     text-align: center;
     padding: 1.5em 0;
     position: relative; /* Para o fixed funcionar corretamente em alguns layouts */
     bottom: 0;
     width: 100%;
+    margin-top: auto;
 }
 
 /* Estilos específicos para o mapa */

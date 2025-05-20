@@ -144,9 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const qtdTelevisoes = parseInt(document.getElementById('qtd-televisoes').value) || 0;
 
         // Simulação de fatores de impacto (você precisará de dados mais precisos)
-        const impactoComputador = 15; // Ex: kg de CO2 evitado
-        const impactoCelular = 2;
-        const impactoTelevisao = 10;
+        const impactoComputador = 20; // Ex: kg de CO2 evitado
+        const impactoCelular = 10;
+        const impactoTelevisao = 25;
 
         const impactoTotal = (qtdComputadores * impactoComputador) +
                              (qtdCelulares * impactoCelular) +
