@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoDescarte - Calculadora de Impacto Ambiental</title>
+    <link rel="stylesheet" href="../ECO/css/style.css">
+    <style>
+        #calculadora-impacto label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        #calculadora-impacto input[type="number"] {
+            width: 100px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        #resultado-impacto {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>EcoDescarte</h1>
+        <nav>
+            <ul>
+                <li><a href="../ECO/index.html">Início</a></li>
+                <li><a href="../ECO/mapa.html">Pontos de Descarte</a></li>
+                <li><a href="../ECO/agendamento.html">Agendamento de Coleta</a></li>
+                <li><a href="../ECO/educacional.html">Educação Ambiental</a></li>
+                <li><a href="../ECO/impacto.html">Impacto Ambiental</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="calculadora-impacto">
+            <h2>Calcule seu Impacto Ambiental</h2>
+            <p>Informe a quantidade de resíduos eletrônicos que você descartou corretamente e veja o impacto positivo para o meio ambiente.</p>
+
+            <label for="qtd-computadores">Computadores Descartados:</label>
+            <input type="number" id="qtd-computadores" value="0" min="0"><br>
+
+            <label for="qtd-celulares">Celulares Descartados:</label>
+            <input type="number" id="qtd-celulares" value="0" min="0"><br>
+
+            <label for="qtd-televisoes">Televisões Descartadas:</label>
+            <input type="number" id="qtd-televisoes" value="0" min="0"><br>
+
+            <button onclick="calcularImpacto()">Calcular Impacto</button>
+
+            <div id="resultado-impacto">
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 EcoDescarte - Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../ECO/js/script.js"></script>
+</body>
+</html>

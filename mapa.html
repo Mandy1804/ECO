@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoDescarte - Pontos de Descarte</title>
+    <link rel="stylesheet" href="../ECO/css/style.css">
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>EcoDescarte</h1>
+        <nav>
+            <ul>
+                <li><a href="../ECO/index.html">Início</a></li>
+                <li><a href="../ECO/mapa.html">Pontos de Descarte</a></li>
+                <li><a href="../ECO/agendamento.html">Agendamento de Coleta</a></li>
+                <li><a href="../ECO/educacional.html">Educação Ambiental</a></li>
+                <li><a href="../ECO/impacto.html">Impacto Ambiental</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="mapa-interativo">
+            <h2>Encontre Pontos de Descarte Próximos</h2>
+            <div id="map">
+                </div>
+            <div class="search-controls">
+                <input type="text" id="search-address" placeholder="Digite seu endereço">
+                <button onclick="searchAddress()">Buscar</button>
+                <button onclick="getCurrentLocation()">Usar minha localização</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 EcoDescarte - Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script src="../ECO/js/script.js"></script>
+</body>
+</html>

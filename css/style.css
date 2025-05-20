@@ -1,0 +1,268 @@
+:root {
+    --primary-color: #2ecc71; /* Verde Esmeralda */
+    --secondary-color: #3498db; /* Azul Vibrante */
+    --accent-color: #f39c12; /* Laranja Queimado */
+    --text-color-primary: #333;
+    --text-color-secondary: #eee;
+    --bg-color-primary: #f9f9f9;
+    --bg-color-secondary: #fff;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease-in-out;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color-primary);
+    color: var(--text-color-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--text-color-secondary);
+    padding: 1.5em 0;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+}
+
+header h1 {
+    margin-bottom: 0.5em;
+    font-size: 2.5em;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1.5em;
+}
+
+nav a {
+    color: var(--text-color-secondary);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+main {
+    padding: 30px;
+}
+
+section {
+    background-color: var(--bg-color-secondary);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: transform 0.2s ease-in-out;
+}
+
+section:hover {
+    transform: translateY(-5px);
+}
+
+h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 1em;
+}
+
+.call-to-action {
+    margin-top: 2em;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: var(--text-color-secondary);
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    transition: var(--transition);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 10px;
+}
+
+.button:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+footer {
+    background-color: var(--text-color-primary);
+    color: var(--text-color-secondary);
+    text-align: center;
+    padding: 1.5em 0;
+    position: relative; /* Para o fixed funcionar corretamente em alguns layouts */
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilos específicos para o mapa */
+#mapa-interativo #map {
+    height: 450px;
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+#mapa-interativo .search-controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#mapa-interativo .search-controls input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    flex-grow: 1;
+    font-size: 1em;
+}
+
+#mapa-interativo .search-controls button {
+    padding: 10px 15px;
+    background-color: var(--secondary-color);
+    color: var(--text-color-secondary);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+#mapa-interativo .search-controls button:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.02);
+}
+
+/* Estilos específicos para o formulário de agendamento */
+#agendamento-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color-primary);
+}
+
+#agendamento-form input[type="text"],
+#agendamento-form input[type="email"],
+#agendamento-form input[type="tel"],
+#agendamento-form input[type="date"],
+#agendamento-form textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+#agendamento-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+#agendamento-form button[type="submit"] {
+    padding: 12px 25px;
+    background-color: var(--primary-color);
+    color: var(--text-color-secondary);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: var(--transition);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#agendamento-form button[type="submit"]:hover {
+    background-color: #27ae60; /* Verde um pouco mais escuro */
+    transform: scale(1.02);
+}
+
+/* Estilos para a página educacional */
+#educacao section {
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+#educacao h3 {
+    color: var(--secondary-color);
+    margin-bottom: 0.8em;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5em;
+}
+
+#educacao ul {
+    list-style: square;
+    padding-left: 20px;
+}
+
+#educacao li {
+    margin-bottom: 0.5em;
+}
+
+/* Estilos para a calculadora de impacto */
+#calculadora-impacto label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: var(--text-color-primary);
+}
+
+#calculadora-impacto input[type="number"] {
+    width: 80px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    margin-bottom: 15px;
+    font-size: 1em;
+}
+
+#calculadora-impacto button {
+    padding: 12px 20px;
+    background-color: var(--accent-color);
+    color: var(--text-color-secondary);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+}
+
+#calculadora-impacto button:hover {
+    background-color: #e67e22; /* Laranja um pouco mais escuro */
+    transform: scale(1.02);
+}
+
+#resultado-impacto {
+    margin-top: 25px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color);
+    padding: 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    background-color: rgba(46, 204, 113, 0.1); /* Verde claro transparente */
+}
