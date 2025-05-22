@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoDescarte - Pontos de Descarte</title>
     <link rel="stylesheet" href="../ECO/css/style.css">
+    <link 
+      rel="stylesheet" 
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
     <style>
         #map {
             height: 400px;
@@ -29,8 +33,7 @@
     <main>
         <section id="mapa-interativo">
             <h2>Encontre Pontos de Descarte Próximos</h2>
-            <div id="map">
-                </div>
+            <div id="map"></div>
             <div class="search-controls">
                 <input type="text" id="search-address" placeholder="Digite seu endereço">
                 <button onclick="searchAddress()">Buscar</button>
@@ -43,7 +46,8 @@
         <p>&copy; 2025 EcoDescarte - Todos os direitos reservados.</p>
     </footer>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script src="../ECO/js/script.js"></script>
 </body>
 </html>
