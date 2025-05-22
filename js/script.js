@@ -44,7 +44,7 @@ function initMap() {
             nome: "Atacadão Maringá",
             info: "Pilhas, Baterias. Endereço: Rua Fernão Dias, 300, Maringá"
         },
-        // --- Pontos abaixo precisam de coordenadas ---
+   
         {
             lat: -23.40814, lng: -51.95598, // COORDENADAS NECESSÁRIAS
             nome: "Tiro de Guerra de Maringá",
@@ -73,7 +73,7 @@ function initMap() {
         {
             lat: -23.41531, lng: -51.99315, // COORDENADAS NECESSÁRIAS
             nome: "UNIFAMMA - Fd. Metropolitana de Maringá",
-            info: "Sucatas eletrônicas. Endereço: Av. Horacio Racanello Filho, 5000, Maringá"
+            info: "Sucatas eletrônicas. Endereço: Av. Virgílio Manília, 22.260 - Jardim Ouro Cola, Maringá "
         },
         {
             lat: -23.42507, lng: -51.95745, // COORDENADAS NECESSÁRIAS
