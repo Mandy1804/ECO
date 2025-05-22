@@ -17,7 +17,7 @@ function initMap() {
     }).addTo(map);
 
     // Pontos de descarte - Baterias, Pilhas, Sucatas Eletrônicas em Maringá
-    // OBS: Pontos com lat/lng null precisam ter suas coordenadas encontradas e preenchidas.
+
     const pontosDescarte = [
         {
             lat: -23.42385, lng: -51.93946,
@@ -155,8 +155,8 @@ function getCurrentLocation() {
                 map.setView([lat, lng], 15); // Zoom maior na localização do usuário
 
                 const userIcon = L.icon({
-                    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png', // Exemplo de ícone azul
-                    iconSize: [25, 41],
+                    iconUrl: "../ECO/imagem/red.png", // Exemplo de ícone azul
+                    iconSize: [50, 50],
                     iconAnchor: [12, 41],
                     popupAnchor: [1, -34],
                     shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
