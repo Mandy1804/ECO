@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const observacoes = document.getElementById('observacoes').value;
 
             console.log("Dados do agendamento:", { nome, email, tipoResiduo, endereco, dataColeta, observacoes });
-            alert('Agendamento realizado com sucesso! )');
+            alert('Agendamento realizado com sucesso!');
         });
     }
 

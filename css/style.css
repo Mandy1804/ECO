@@ -2,10 +2,20 @@
     --primary-color: #2ecc71; /* Verde Esmeralda */
     --secondary-color: #3498db; /* Azul Vibrante */
     --accent-color: #f39c12; /* Laranja Queimado */
+    
     --text-color-primary: #333;
     --text-color-secondary: #eee;
+    
     --bg-color-primary: #f9f9f9;
     --bg-color-secondary: #fff;
+    
+    /* Gradiente verde para HEADER */
+    --bg-green-gradient-start: #2A6A3F;
+    --bg-green-gradient-mid: #4CAF50;
+    --bg-green-gradient-end: #81C784;
+    
+    --bg-header-gradient: linear-gradient(135deg, var(--bg-green-gradient-start), var(--bg-green-gradient-mid), var(--bg-green-gradient-end));
+    
     --border-radius: 8px;
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     --transition: all 0.3s ease-in-out;
@@ -15,7 +25,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--bg-color-primary);
+    background: var(--bg-color-primary);
     color: var(--text-color-primary);
     line-height: 1.6;
     overflow-x: hidden;
@@ -25,7 +35,7 @@ body {
 }
 
 header {
-    background-color: var(--primary-color);
+    background: var(--bg-header-gradient);
     color: var(--text-color-secondary);
     padding: 1.5em 0;
     text-align: center;
@@ -34,8 +44,13 @@ header {
 
 header h1 {
     margin-bottom: 0.5em;
-    font-size: 2.5em;
+    font-size: 2.8em;
     letter-spacing: 1px;
+    font-weight: 700;
+    text-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.6),
+        0 0 10px rgba(255, 255, 255, 0.2);
+    color: var(--text-color-secondary);
 }
 
 nav ul {
@@ -111,13 +126,10 @@ footer {
     color: #333;
     text-align: center;
     padding: 1.5em 0;
-    position: relative; /* Para o fixed funcionar corretamente em alguns layouts */
-    bottom: 0;
     width: 100%;
     margin-top: auto;
 }
 
-/* Estilos específicos para o mapa */
 #mapa-interativo #map {
     height: 450px;
     width: 100%;
@@ -156,7 +168,6 @@ footer {
     transform: scale(1.02);
 }
 
-/* Estilos específicos para o formulário de agendamento */
 #agendamento-form label {
     display: block;
     margin-bottom: 8px;
@@ -197,11 +208,10 @@ footer {
 }
 
 #agendamento-form button[type="submit"]:hover {
-    background-color: #27ae60; 
+    background-color: #27ae60;
     transform: scale(1.02);
 }
 
-/* Estilos para a página educacional */
 #educacao section {
     border: 1px solid #eee;
     border-radius: var(--border-radius);
@@ -225,7 +235,6 @@ footer {
     margin-bottom: 0.5em;
 }
 
-/* Estilos para a calculadora de impacto */
 #calculadora-impacto label {
     display: block;
     margin-bottom: 10px;
@@ -256,7 +265,7 @@ footer {
 }
 
 #calculadora-impacto button:hover {
-    background-color: #e67e22; 
+    background-color: #e67e22;
     transform: scale(1.02);
 }
 
@@ -268,6 +277,5 @@ footer {
     padding: 15px;
     border: 1px solid var(--primary-color);
     border-radius: var(--border-radius);
-    background-color: rgba(46, 204, 113, 0.1); 
+    background-color: rgba(46, 204, 113, 0.1);
 }
- 
