@@ -247,3 +247,26 @@ window.onload = function() {
         initMap();
     }
 };
+
+const menuToggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.menu');
+const body = document.body;
+
+menuToggle.addEventListener('click', () => {
+  menu.classList.toggle('active');
+  menuToggle.classList.toggle('active');
+  body.classList.toggle('no-scroll');
+});
+
+const toggleTheme = document.querySelector('.toggle-theme');
+const iconTheme = document.querySelector('.icon-theme');
+
+toggleTheme.addEventListener('click', () => {
+  body.classList.toggle('dark-theme');
+
+  if(body.classList.contains('dark-theme')) {
+    iconTheme.src = 'https://img.icons8.com/ios-filled/50/ffffff/sun--v1.png'; // ícone sol branco
+  } else {
+    iconTheme.src = 'https://img.icons8.com/ios-filled/50/000000/moon-symbol.png'; // ícone lua preto
+  }
+});
