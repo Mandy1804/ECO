@@ -4,10 +4,11 @@
     --accent-color: #f39c12; /* Laranja Queimado */
     
     --text-color-primary: #333;
-    --text-color-secondary: #eee;
+    --text-color-secondary: #eee; /* Para texto sobre fundos escuros/coloridos */
+    --text-color-on-menu: #ffffff; /* Especificamente para texto do menu mobile */
     
     --bg-color-primary: #f9f9f9;
-    --bg-color-secondary: #fff;
+    --bg-color-secondary: #fff; /* Fundo de seções, cards */
     
     /* Gradiente verde para HEADER */
     --bg-green-gradient-start: #2A6A3F;
@@ -15,91 +16,146 @@
     --bg-green-gradient-end: #81C784;
     
     --bg-header-gradient: linear-gradient(135deg, var(--bg-green-gradient-start), var(--bg-green-gradient-mid), var(--bg-green-gradient-end));
+    --bg-mobile-menu: var(--bg-green-gradient-start); /* Fundo sólido para menu mobile */
     
     --border-radius: 8px;
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     --transition: all 0.3s ease-in-out;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Reset básico e Box Sizing */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: var(--bg-color-primary);
     color: var(--text-color-primary);
     line-height: 1.6;
-    overflow-x: hidden;
-    min-height: 100vh;
+    overflow-x: hidden; /* Prevenir scroll horizontal */
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s; /* Para transição de tema */
+}
+
+body.no-scroll {
+    overflow-y: hidden; /* Prevenir scroll do body quando menu mobile estiver aberto */
+}
+
+/* Estilos para Tema Escuro (Exemplo) */
+body.dark-theme {
+    --primary-color: #27ae60;
+    --secondary-color: #2980b9;
+    --accent-color: #d35400;
+    --text-color-primary: #f0f0f0;
+    --text-color-secondary: #1a1a1a;
+    --bg-color-primary: #2c3e50;
+    --bg-color-secondary: #34495e;
+    --bg-header-gradient: linear-gradient(135deg, #1e4e2f, #3a8e40, #66a269);
+    --bg-mobile-menu: #1e4e2f;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 header {
     background: var(--bg-header-gradient);
-    color: var(--text-color-secondary);
-    padding: 1.5em 0;
+    color: var(--text-color-secondary); /* Texto no header será branco/claro */
+    padding: 1em 0; /* Ajustado padding */
     text-align: center;
     box-shadow: var(--box-shadow);
+    position: relative; /* Para ancorar o menu mobile se necessário */
+    z-index: 1001; /* Header acima do menu que pode estar abaixo */
 }
 
 header h1 {
-    margin-bottom: 0.5em;
-    font-size: 2.8em;
+    margin-bottom: 0.3em;
+    font-size: 2.5em; /* Ajustado */
     letter-spacing: 1px;
     font-weight: 700;
-    text-shadow:
-        2px 2px 4px rgba(0, 0, 0, 0.6),
-        0 0 10px rgba(255, 255, 255, 0.2);
-    color: var(--text-color-secondary);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-nav ul {
+nav {
+    position: relative; /* Para o menu mobile se posicionar em relação à nav */
+}
+
+nav ul.menu {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-nav ul li {
-    margin: 0 1.5em;
+nav ul.menu li {
+    margin: 0 1.2em; /* Ajustado */
 }
 
-nav a {
-    color: var(--text-color-secondary);
+nav ul.menu li a {
+    color: var(--text-color-secondary); /* Cor do texto dos links do menu no header */
     text-decoration: none;
     font-weight: bold;
+    padding: 0.5em 0;
     transition: color 0.3s ease;
 }
 
-nav a:hover {
+nav ul.menu li a:hover {
     color: var(--accent-color);
 }
 
+/* Botão do Menu Mobile (Hamburguer) */
+.menu-toggle {
+    display: none; /* Escondido por padrão em telas maiores */
+    background: none;
+    border: none;
+    color: var(--text-color-secondary); /* Cor do ícone/texto do hamburguer */
+    font-size: 1.8em; /* Tamanho do ícone/texto */
+    padding: 5px 5px;
+    cursor: pointer;
+    user-select: none;
+    position: absolute; /* Para posicionar dentro do header/nav */
+    right: 20px;
+    top: 50%;
+    transform: translateY(-80%);
+    line-height: 1
+}
+
 main {
-    padding: 30px;
+    flex-grow: 1; /* Faz o main ocupar o espaço restante */
+    padding: 20px; /* Padding geral */
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima do conteúdo */
+    margin: 0 auto; /* Centraliza o conteúdo */
 }
 
 section {
     background-color: var(--bg-color-secondary);
-    padding: 30px;
-    margin-bottom: 30px;
+    padding: 25px;
+    margin-bottom: 25px;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 section:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
 }
 
 h2, h3 {
     color: var(--primary-color);
-    margin-bottom: 1em;
+    margin-bottom: 0.8em;
 }
 
+h2 { font-size: 1.8em; }
+h3 { font-size: 1.4em; }
+
 .call-to-action {
-    margin-top: 2em;
+    margin-top: 1.5em;
     text-align: center;
 }
 
@@ -113,88 +169,64 @@ h2, h3 {
     font-weight: bold;
     transition: var(--transition);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    margin: 0 10px;
+    margin: 5px 10px; /* Adicionado margin vertical */
+    border: none; /* Caso seja usado em tags button */
+    cursor: pointer; /* Para tags button */
 }
 
 .button:hover {
     background-color: var(--accent-color);
     transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 footer {
     background-color: #f2f2f2;
-    color: #333;
+    color: black;
     text-align: center;
     padding: 1.5em 0;
     width: 100%;
-    margin-top: auto;
+    margin-top: auto; /* Garante que o footer fique no final da página */
 }
 
-#mapa-interativo #map {
-    height: 450px;
-    width: 100%;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-}
-
-#mapa-interativo .search-controls {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-#mapa-interativo .search-controls input[type="text"] {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius);
-    flex-grow: 1;
-    font-size: 1em;
-}
-
-#mapa-interativo .search-controls button {
-    padding: 10px 15px;
-    background-color: var(--secondary-color);
-    color: var(--text-color-secondary);
-    border: none;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-weight: bold;
-    transition: var(--transition);
-}
-
-#mapa-interativo .search-controls button:hover {
-    background-color: var(--accent-color);
-    transform: scale(1.02);
-}
-
-#agendamento-form label {
+/* Estilos específicos de formulários */
+label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
     color: var(--text-color-primary);
 }
 
-#agendamento-form input[type="text"],
-#agendamento-form input[type="email"],
-#agendamento-form input[type="tel"],
-#agendamento-form input[type="date"],
-#agendamento-form textarea {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+textarea {
+    width: 100%; /* Ajustado para 100% */
+    padding: 12px; /* Aumentado padding */
+    margin-bottom: 18px; /* Aumentado margem */
+    border: 1px solid #ccc; /* Cor de borda mais suave */
     border-radius: var(--border-radius);
     box-sizing: border-box;
     font-size: 1em;
+    background-color: var(--bg-color-secondary); /* Fundo do input */
+    color: var(--text-color-primary); /* Texto do input */
 }
 
-#agendamento-form textarea {
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color), 0.2);
+}
+
+textarea {
     resize: vertical;
     min-height: 120px;
 }
 
-#agendamento-form button[type="submit"] {
+button[type="submit"],
+#calculadora-impacto button { /* Estilo unificado para botões de ação */
     padding: 12px 25px;
     background-color: var(--primary-color);
     color: var(--text-color-secondary);
@@ -207,144 +239,192 @@ footer {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-#agendamento-form button[type="submit"]:hover {
-    background-color: #27ae60;
+button[type="submit"]:hover,
+#calculadora-impacto button:hover {
+    background-color: #27ae60; /* Escurecer o primary color no hover */
     transform: scale(1.02);
 }
 
-#educacao section {
-    border: 1px solid #eee;
-    border-radius: var(--border-radius);
-    padding: 25px;
-    margin-bottom: 25px;
+/* Página de Agendamento */
+#agendamento-form textarea {
+    min-height: 100px; /* Ajustado */
 }
 
+/* Página Educacional */
+#educacao section { /* Seções dentro da página educacional */
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin-bottom: 20px;
+}
 #educacao h3 {
     color: var(--secondary-color);
-    margin-bottom: 0.8em;
     border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 0.5em;
+    padding-bottom: 0.4em;
 }
-
 #educacao ul {
-    list-style: square;
-    padding-left: 20px;
+    list-style: disc; /* Mais comum */
+    padding-left: 25px;
 }
-
 #educacao li {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.6em;
 }
 
-#calculadora-impacto label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: var(--text-color-primary);
-}
-
+/* Calculadora de Impacto */
 #calculadora-impacto input[type="number"] {
-    width: 80px;
-    padding: 8px;
-    border: 1px solid #ddd;
+    width: 100px; /* Aumentado para melhor toque */
+    padding: 10px;
+}
+#resultado-impacto {
+    margin-top: 20px;
+    font-size: 1.15em; /* Ajustado */
+    font-weight: bold;
+    color: var(--primary-color);
+    padding: 15px;
+    border: 1px solid var(--primary-color);
     border-radius: var(--border-radius);
-    margin-bottom: 15px;
-    font-size: 1em;
+    background-color: rgba(46, 204, 113, 0.08); /* Fundo mais sutil */
 }
 
-#calculadora-impacto button {
-    padding: 12px 20px;
-    background-color: var(--accent-color);
+/* Mapa Interativo */
+#mapa-interativo #map {
+    height: 400px; /* Padrão */
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 20px; /* Espaçamento abaixo do mapa */
+}
+#mapa-interativo .search-controls {
+    display: flex;
+    flex-wrap: wrap; /* Para quebrar em telas menores */
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px; /* Espaçamento */
+}
+#mapa-interativo .search-controls input[type="text"] {
+    flex-grow: 1;
+    min-width: 200px; /* Largura mínima */
+}
+#mapa-interativo .search-controls button {
+    padding: 10px 15px;
+    background-color: var(--secondary-color);
     color: var(--text-color-secondary);
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;
     font-weight: bold;
     transition: var(--transition);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    font-size: 1em;
+}
+#mapa-interativo .search-controls button:hover {
+    background-color: var(--accent-color);
 }
 
-#calculadora-impacto button:hover {
-    background-color: #e67e22;
-    transform: scale(1.02);
+
+/* --- Media Queries para Responsividade --- */
+
+/* Estilos Mobile (até 768px) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em; /* Reduzir tamanho do título */
+        margin-bottom: 0.5em;
+    }
+
+    .menu-toggle {
+        display: block; /* Mostrar botão hamburguer */
+    }
+
+    nav ul.menu {
+        /* Esconder o menu desktop e preparar para o menu mobile */
+        display: flex; /* Mantemos flex para flex-direction */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Abaixo do nav/header */
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-mobile-menu); /* Fundo opaco */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        
+        max-height: 0; /* Começa fechado */
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* Transição suave */
+        z-index: 1000; /* Acima do conteúdo da página */
+    }
+
+    nav ul.menu.active {
+        max-height: 70vh; /* Altura máxima quando aberto (ajuste conforme necessário) */
+        overflow-y: auto; /* Scroll se itens excederem altura */
+    }
+
+    nav ul.menu li {
+        margin: 0;
+        width: 100%;
+        text-align: center; /* Centralizar texto dos itens */
+    }
+
+    nav ul.menu li a {
+        display: block; /* Ocupar toda a largura */
+        padding: 1em 1.5em; /* Aumentar área de toque */
+        color: var(--text-color-on-menu); /* Cor de texto para o menu mobile */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador sutil */
+    }
+    nav ul.menu li:last-child a {
+        border-bottom: none;
+    }
+    nav ul.menu li a:hover {
+        background-color: var(--accent-color); /* Destaque no hover */
+        color: var(--text-color-secondary);
+    }
+
+    main {
+        padding: 15px;
+    }
+    section {
+        padding: 20px;
+    }
+
+    .call-to-action .button {
+        display: block; /* Botões um abaixo do outro */
+        margin: 10px auto; /* Centralizar e espaçar */
+        width: 80%;
+        max-width: 300px;
+    }
+
+    #mapa-interativo .search-controls {
+        flex-direction: column; /* Controles de busca um abaixo do outro */
+    }
+    #mapa-interativo .search-controls input[type="text"],
+    #mapa-interativo .search-controls button {
+        width: 100%;
+    }
+
+    /* Ajustes para o Toggle de Tema se existir */
+    .toggle-theme-container {
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding: 10px 0;
+    }
+    .toggle-theme {
+        justify-content: center;
+        padding: 10px;
+    }
 }
 
-#resultado-impacto {
-    margin-top: 25px;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: var(--primary-color);
-    padding: 15px;
-    border: 1px solid var(--primary-color);
-    border-radius: var(--border-radius);
-    background-color: rgba(46, 204, 113, 0.1);
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    font-family: Arial, sans-serif;
-    transition: background-color 0.3s, color 0.3s;
-    background-color: #fff;
-    color: #333;
-    overflow-x: hidden;
-  }
-
-
-  /* Menu */
-  .menu-toggle {
-    display: none;
-    cursor: pointer;
-    padding: 10px 15px;
-    font-size: 18px;
-    user-select: none;
-  }
-
-  .menu {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-    padding: 10px 20px;
-  }
-
-
-  .menu li a:hover {
- 
-    border-radius: 4px;
-  }
-
-  /* Toggle tema */
-  .toggle-theme {
-    margin-left: auto;
+/* Toggle tema (se você for usar) */
+.toggle-theme {
+    margin-left: auto; /* No desktop, empurra para a direita se estiver no fluxo principal */
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
-  }
+    padding: 5px 10px; /* Adiciona um pouco de padding */
+}
 
-  .toggle-theme img {
+.toggle-theme img.icon-theme {
     width: 24px;
     height: 24px;
-  }
-
-  /* Estilo mobile */
-  @media (max-width: 768px) {
-    .menu-toggle {
-      display: block;
-    }
-
-    .menu {
-      flex-direction: column;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-
-    .menu.active {
-      max-height: 400px; /* suficiente para mostrar todos os itens */
-    }
-  }
+    filter: brightness(0) invert(1); /* Deixa ícone branco se for preto por padrão no header */
+}
+body.dark-theme .toggle-theme img.icon-theme {
+   /* Se o ícone de sol já for branco, não precisa de filtro.
+      Se o ícone de lua já for escuro, o filtro pode precisar ser ajustado ou removido.
+      Este filtro é um exemplo genérico. */
+   filter: none; /* Remover filtro se o ícone já tiver a cor correta para o tema escuro */
+}
