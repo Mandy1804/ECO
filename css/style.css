@@ -417,14 +417,3 @@ button[type="submit"]:hover,
     padding: 5px 10px; /* Adiciona um pouco de padding */
 }
 
-.toggle-theme img.icon-theme {
-    width: 24px;
-    height: 24px;
-    filter: brightness(0) invert(1); /* Deixa ícone branco se for preto por padrão no header */
-}
-body.dark-theme .toggle-theme img.icon-theme {
-   /* Se o ícone de sol já for branco, não precisa de filtro.
-      Se o ícone de lua já for escuro, o filtro pode precisar ser ajustado ou removido.
-      Este filtro é um exemplo genérico. */
-   filter: none; /* Remover filtro se o ícone já tiver a cor correta para o tema escuro */
-}

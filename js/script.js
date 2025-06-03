@@ -168,42 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
-    
-    const toggleThemeButton = document.querySelector('.toggle-theme');
-    const iconTheme = document.querySelector('.icon-theme');
-
-    if (toggleThemeButton && iconTheme) {
-    
-        const applyTheme = (themeName) => {
-            body.classList.remove('dark-theme', 'light-theme'); // Remove temas existentes
-            body.classList.add(themeName);
-            if (themeName === 'dark-theme') {
-                iconTheme.src = 'https://img.icons8.com/ios-filled/50/ffffff/sun--v1.png'; // Ícone sol
-                iconTheme.alt = 'Mudar para tema claro';
-            } else {
-                iconTheme.src = 'https://img.icons8.com/ios-filled/50/000000/moon-symbol.png'; // Ícone lua
-                iconTheme.alt = 'Mudar para tema escuro';
-            }
-            localStorage.setItem('theme', themeName);
-        };
-
-      
-        toggleThemeButton.addEventListener('click', () => {
-            const currentTheme = body.classList.contains('dark-theme') ? 'light-theme' : 'dark-theme';
-            applyTheme(currentTheme);
-        });
-
-        
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            applyTheme(savedTheme);
-        } else {
-            applyTheme('light-theme'); 
-        }
-    }
-
-
    
     const formAgendamento = document.getElementById('form-agendamento');
     if (formAgendamento) {
