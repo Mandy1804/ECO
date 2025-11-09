@@ -1,7 +1,5 @@
-
-
-let map; 
-let markers = []; 
+let map; 
+let markers = []; 
 
 function initMap() {
     if (!document.getElementById('map')) return;
@@ -39,7 +37,7 @@ function initMap() {
 }
 
 function addMarker(lat, lng, title, info) {
-    if (!map) return; // Garante que o mapa exista
+    if (!map) return;
     const marker = L.marker([lat, lng]).addTo(map);
     marker.bindPopup(`<h3>${title}</h3><p>${info}</p>`);
     markers.push(marker);
@@ -88,17 +86,17 @@ function getCurrentLocation() {
                 map.setView([lat, lng], 15);
                 const userIcon = L.icon({
                     iconUrl: "../ECO/imagem/red.png", // Verifique este caminho
-                    iconSize: [35, 35], // Ajustado
-                    iconAnchor: [17, 35], // Ajustado
-                    popupAnchor: [0, -35], // Ajustado
+                    iconSize: [35, 35],
+                    iconAnchor: [17, 35],
+                    popupAnchor: [0, -35],
                     shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
                     shadowSize: [41, 41]
                 });
                 markers = markers.filter(marker => {
                      if (marker.getPopup().getContent().includes("Sua Localização")) {
-                        map.removeLayer(marker);
-                        return false;
-                    }
+                         map.removeLayer(marker);
+                         return false;
+                     }
                     return true;
                 });
                 const newMarker = L.marker([lat, lng], { icon: userIcon }).addTo(map);
@@ -108,7 +106,6 @@ function getCurrentLocation() {
             (error) => {
                 console.error("Erro ao obter localização: ", error);
                 if (error.code !== error.PERMISSION_DENIED) {
-                    // alert("Não foi possível obter sua localização. Verifique as permissões do navegador.");
                     // Opcional: não alertar, apenas logar o erro ou centralizar no mapa padrão.
                 }
             },
@@ -127,13 +124,13 @@ window.calcularImpacto = function() {
     const resultadoImpactoDiv = document.getElementById('resultado-impacto');
 
 
-    const impactoComputador = 20; 
+    const impactoComputador = 20; 
     const impactoCelular = 10;
     const impactoTelevisao = 25;
 
     const impactoTotal = (qtdComputadores * impactoComputador) +
-                         (qtdCelulares * impactoCelular) +
-                         (qtdTelevisoes * impactoTelevisao);
+                            (qtdCelulares * impactoCelular) +
+                            (qtdTelevisoes * impactoTelevisao);
 
     if (resultadoImpactoDiv) {
         resultadoImpactoDiv.innerHTML = `Seu descarte consciente pode evitar a emissão de aproximadamente ${impactoTotal} kg de CO2 e conservar recursos naturais. Obrigado!`;
@@ -143,19 +140,18 @@ window.calcularImpacto = function() {
 
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
-    const menu = document.querySelector('.menu'); 
+    const menu = document.querySelector('.menu'); 
     const body = document.body;
 
-    
+    // Lógica do Menu Mobile
     if (menuToggle && menu) {
         menuToggle.addEventListener('click', () => {
             const isActive = menu.classList.toggle('active');
-            menuToggle.classList.toggle('active'); // Para estilizar o botão se necessário
+            menuToggle.classList.toggle('active');
             menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
             body.classList.toggle('no-scroll', isActive);
         });
 
-    
         const menuLinks = menu.querySelectorAll('a');
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -168,33 +164,69 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-   
-    const formAgendamento = document.getElementById('form-agendamento');
-    if (formAgendamento) {
-        formAgendamento.addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
-           
-            const tipoResiduo = document.getElementById('tipo-residuo').value;
-            const endereco = document.getElementById('endereco').value;
-            const dataColeta = document.getElementById('data-coleta').value;
-
-            if (!nome || !email || !tipoResiduo || !endereco || !dataColeta) {
-                alert('Por favor, preencha todos os campos obrigatórios.');
-                return;
-            }
-
-            console.log("Dados do agendamento:", { nome, email });
-            alert('Agendamento solicitado com sucesso! Entraremos em contato em breve.');
-            formAgendamento.reset(); 
-        });
-    }
-
-
     
-    if (document.getElementById('map')) {
+// --- LÓGICA DE ENVIO DO FORMULÁRIO DE AGENDAMENTO (CÓDIGO CORRIGIDO) ---
+const formAgendamento = document.getElementById('form-agendamento');
+if (formAgendamento) {
+    formAgendamento.addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede o envio tradicional do formulário
         
+        // 1. Coleta dos dados
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const telefone = document.getElementById('telefone').value;
+        const tipoResiduo = document.getElementById('tipo-residuo').value;
+        const endereco = document.getElementById('endereco').value;
+        const dataColeta = document.getElementById('data-coleta').value;
+        const observacoes = document.getElementById('observacoes').value;
+
+        if (!nome || !email || !tipoResiduo || !endereco || !dataColeta) {
+            alert('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
+
+        // 2. Monta o objeto JSON de forma PLANA para o Spring Boot
+        const dadosAgendamento = {
+            nome: nome,
+            email: email,
+            telefone: telefone,
+            tipoResiduo: tipoResiduo,
+            endereco: endereco,
+            dataColeta: dataColeta, // Formato AAAA-MM-DD
+            observacoes: observacoes
+        };
+
+        // 3. Envio dos dados para o Back-end (API REST na porta 8080)
+        fetch('http://localhost:8080/api/agendamentos', {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dadosAgendamento) // Converte o objeto JS para JSON
+        })
+        .then(response => {
+            if (response.ok) { 
+                return response.json();
+            }
+            // Tenta ler o erro do Back-end
+            return response.text().then(errorText => {
+                throw new Error(`Erro ${response.status}: ${errorText || response.statusText}`);
+            });
+        })
+        .then(data => {
+            console.log('Agendamento salvo com sucesso. ID:', data.id);
+            alert('✅ Agendamento solicitado com sucesso! Seu ID de agendamento é: ' + data.id);
+            formAgendamento.reset(); // Limpa o formulário após o sucesso
+        })
+        .catch(error => {
+            console.error('Erro ao agendar:', error);
+            alert('❌ Ocorreu um erro ao tentar agendar. Certifique-se de que o Back-end Spring Boot está rodando.');
+        });
+    });
+}
+
+    // Inicialização do Mapa
+    if (document.getElementById('map')) {
         initMap();
     }
 });
