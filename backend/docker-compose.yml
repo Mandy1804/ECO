@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: ecodescarte-mysql
+    restart: always
+    environment:
+      # NOME DO BANCO DE DADOS (USADO NO application.properties)
+      MYSQL_DATABASE: ecodescarte_db
+
+      # CREDENCIAIS USADAS PELO SPRING BOOT (ecouser/ecopass)
+      MYSQL_USER: ecouser
+      MYSQL_PASSWORD: ecopass
+
+      # SENHA DE ADMINISTRAÇÃO ROOT (Padrão para acesso total/manutenção)
+      MYSQL_ROOT_PASSWORD: root
+
+    ports:
+      # Mapeia a porta 3306 do contêiner para a porta 3306 da sua máquina
+      - "3308:3306"
+
+    volumes:
+      # Armazena os dados do MySQL de forma persistente
+      - ecodescarte_data:/var/lib/mysql
+
+    # Essencial para conexões do Java/MySQL
+    command: --default-authentication-plugin=mysql_native_password
+
+    networks:
+      - eco-network
+
+networks:
+  eco-network:
+
+volumes:
+  ecodescarte_data:
